@@ -6,7 +6,11 @@ import './index.scss';
 
 import App from './Components/App.jsx';
 
-ReactDOM.render(
-    <App />,
-    document.getElementById('app')
-);
+// ReactDOM.render(
+//     myParagraph,
+//     document.getElementById('app')
+// );
+var myDiv = document.getElementById("app");
+var myParagraph = document.createElement("p");
+myParagraph.innerHTML = "helloo";
+myDiv.appendChild(myParagraph);
