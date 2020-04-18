@@ -55,7 +55,8 @@ class App extends React.Component {
             Female
           </label>
           <br /><br />
-          <select name="favoriteColor" onChange={this.handleChange}>
+          <select name="favoriteColor" defaultValue={"default"} onChange={this.handleChange}>
+            <option value="default" disabled>Choose your favorite color</option>
             <option value="blue">Blue</option>
             <option value="green">Green</option>
           </select>
