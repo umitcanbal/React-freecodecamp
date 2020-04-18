@@ -5,86 +5,148 @@ import todosData from "./todosData"
 import Conditional from "./Conditional"
 
 
-class App extends React.Component {
-  constructor() {
-    super()
+// class App extends React.Component {
+//   constructor() {
+//     super()
 
-    this.state = {
-      firstName: "",
-      surname: "",
-      textArea: "",
-      isAccepted: false,
-      gender: "",
-      favoriteColor: "",
-    }
-  }
+//     this.state = {
+//       firstName: "",
+//       surname: "",
+//       textArea: "",
+//       isAccepted: false,
+//       gender: "",
+//       favoriteColor: "",
+//     }
+//   }
 
-  handleChange = () => {
+//   handleChange = () => {
+//     const {name, value, type, checked} = event.target
+
+//     type==="checkbox" ? 
+//     this.setState( { [name]: checked } ) : 
+//     this.setState( { [name]: value } )
+//   }
+
+//   render() {
+//     const {firstName, surname, textArea, isAccepted, gender, favoriteColor} = this.state
+
+//     return (
+//       <div>
+        
+//         <form>
+
+//           <input type="text" name="firstName" placeholder="First Name" value={firstName} onChange={this.handleChange} />
+//           <br /><br />
+//           <input type="text" name="surname" placeholder="Surname" value={surname} onChange={this.handleChange} />
+//           <br /><br />
+//           <textarea name="textArea" placeholder="Write here..." value={textArea} onChange={this.handleChange} />
+//           <br /><br />
+//           <label>
+//             <input type="checkbox" name="isAccepted" checked={isAccepted} value={isAccepted===true ? "on" : "off" } onChange={this.handleChange} />
+//             I do accept the conditions!
+//           </label>
+//           <br /><br />
+//           <label>
+//             <input type="radio" name="gender" value="male" onChange={this.handleChange} />
+//             Male
+//           </label>
+//           <label>
+//             <input type="radio" name="gender" value="female" onChange={this.handleChange} />
+//             Female
+//           </label>
+//           <br /><br />
+//           <select name="favoriteColor" defaultValue={"default"} onChange={this.handleChange}>
+//             <option value="default" disabled>Choose your favorite color</option>
+//             <option value="blue">Blue</option>
+//             <option value="green">Green</option>
+//           </select>
+
+//         </form>  
+
+//         <div>
+
+//           <p>First Name: {firstName}</p>
+//           <p>Surname: {surname}</p>
+//           <p>I would like to say: {textArea} </p>
+//           <p>I do {isAccepted ? null : "NOT"} accept this</p>
+//           <p>I am a {gender==="male" ? "man" : "woman"}</p>
+//           <p>My favorite color: {favoriteColor}</p>
+
+//         </div>
+        
+//       </div>
+//     )
+//   }
+// }
+
+function App() {
+  const [state, setState] = useState({
+    firstName: "",
+    surname: "",
+    textArea: "",
+    isAccepted: false,
+    gender: "",
+    favoriteColor: "",
+  })
+
+  const handleChange = () => {
     const {name, value, type, checked} = event.target
-
-    type==="checkbox" ? 
-    this.setState( { [name]: checked } ) : 
-    this.setState( { [name]: value } )
+    
+    type==="checkbox" ?
+    setState( {...state, [name]: checked } ) : 
+    setState( {...state, [name]: value } )
   }
 
-  render() {
-    const {firstName, surname, textArea, isAccepted, gender, favoriteColor} = this.state
+  const {firstName, surname, textArea, isAccepted, gender, favoriteColor} = state
 
-    return (
+  return (
+    <div>
+            
+      <form>
+            
+        <input type="text" name="firstName" placeholder="First Name" value={firstName} onChange={handleChange} />
+        <br /><br />
+        <input type="text" name="surname" placeholder="Surname" value={surname} onChange={handleChange} />
+        <br /><br />
+        <textarea name="textArea" placeholder="Write here..." value={textArea} onChange={handleChange} />
+        <br /><br />
+        <label>
+          <input type="checkbox" name="isAccepted" checked={isAccepted} value={isAccepted===true ? "on" : "off" } onChange={handleChange} />
+          I do accept the conditions!
+        </label>
+        <br /><br />
+        <label>
+          <input type="radio" name="gender" value="male" onChange={handleChange} />
+          Male
+        </label>
+        <label>
+          <input type="radio" name="gender" value="female" onChange={handleChange} />
+          Female
+        </label>
+        <br /><br />
+        <select name="favoriteColor" defaultValue={"default"} onChange={handleChange}>
+          <option value="default" disabled>Choose your favorite color</option>
+          <option value="blue">Blue</option>
+          <option value="green">Green</option>
+        </select>
+            
+      </form>  
+            
       <div>
-        
-        <form>
-
-          <input type="text" name="firstName" placeholder="First Name" value={firstName} onChange={this.handleChange} />
-          <br /><br />
-          <input type="text" name="surname" placeholder="Surname" value={surname} onChange={this.handleChange} />
-          <br /><br />
-          <textarea name="textArea" placeholder="Write here..." value={textArea} onChange={this.handleChange} />
-          <br /><br />
-          <label>
-            <input type="checkbox" name="isAccepted" checked={isAccepted} value={isAccepted===true ? "on" : "off" } onChange={this.handleChange} />
-            I do accept the conditions!
-          </label>
-          <br /><br />
-          <label>
-            <input type="radio" name="gender" value="male" onChange={this.handleChange} />
-            Male
-          </label>
-          <label>
-            <input type="radio" name="gender" value="female" onChange={this.handleChange} />
-            Female
-          </label>
-          <br /><br />
-          <select name="favoriteColor" defaultValue={"default"} onChange={this.handleChange}>
-            <option value="default" disabled>Choose your favorite color</option>
-            <option value="blue">Blue</option>
-            <option value="green">Green</option>
-          </select>
-
-        </form>  
-
-        <div>
-
-          <p>First Name: {firstName}</p>
-          <p>Surname: {surname}</p>
-          <p>I would like to say: {textArea} </p>
-          <p>I do {isAccepted ? null : "NOT"} accept this</p>
-          <p>I am a {gender==="male" ? "man" : "woman"}</p>
-          <p>My favorite color: {favoriteColor}</p>
-
-        </div>
-        
+            
+        <p>First Name: {firstName}</p>
+        <p>Surname: {surname}</p>
+        <p>I would like to say: {textArea} </p>
+        <p>I do {isAccepted ? null : "NOT"} accept this</p>
+        <p>I am a {gender==="male" ? "man" : "woman"}</p>
+        <p>My favorite color: {favoriteColor}</p>
+            
       </div>
-    )
-  }
+                    
+    </div>
+        
+  )
 }
-
-
-
-
-
-
-
 
 
 
