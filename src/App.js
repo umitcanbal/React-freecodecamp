@@ -17,7 +17,8 @@ class App extends React.Component {
       additionalInfo: {
         isVegetarian: false,
         isOverweight: false,
-      }
+      },
+      isSubmited: false,
     }
   }
 
@@ -30,20 +31,22 @@ class App extends React.Component {
       this.setState( { [name]: value })
   }
 
+  handleSubmit = () => {
+    event.preventDefault()
+    this.setState({isSubmited: true})
+    const dataEncoded = JSON.stringify(this.state)
+    console.log(dataEncoded)
+    const dataDecoded = JSON.parse(dataEncoded)
+    console.log(dataDecoded)
+    
+  }
+
   render() {
-    const {firstName, lastName, age, gender, destination, additionalInfo} = this.state
+    const {firstName, lastName, age, gender, destination, additionalInfo, isSubmited} = this.state
 
     return (
       <main>
-        <form onSubmit={ 
-          (event) => {
-            event.preventDefault()
-            const dataEncoded = JSON.stringify(this.state)
-            console.log(dataEncoded)
-            const dataDecoded = JSON.parse(dataEncoded)
-            console.log(dataDecoded)
-          }
-        }>
+        <form onSubmit={this.handleSubmit}>
 
           ***<input placeholder="First Name" name="firstName" value={firstName} onChange={this.handleClick} required/><br />
           ***<input placeholder="Last Name" name="lastName" value={lastName} onChange={this.handleClick} required/><br />
@@ -68,16 +71,18 @@ class App extends React.Component {
           <button>Submit</button><br /><br /><br />
 
         </form>
-
-        <h2>Entered information:</h2>
-        <p>Your name: {firstName} {lastName}</p>
-        <p>Your age: {age}</p>
-        <p>Your gender: {gender}</p>
-        <p>Your destination: {destination}</p>
-        <p>Your dietary restrictions: </p>
-        <p>Vegetarian: {additionalInfo.isVegetarian ? "Yes" : "No"}</p>
-        <p>Overweight: {additionalInfo.isOverweight ? "Yes" : "No"}</p>
-        
+        {isSubmited &&
+          <div>
+            <h2>Entered information:</h2>
+            <p>Your name: {firstName} {lastName}</p>
+            <p>Your age: {age}</p>
+            <p>Your gender: {gender}</p>
+            <p>Your destination: {destination}</p>
+            <p>Your dietary restrictions: </p>
+            <p>Vegetarian: {additionalInfo.isVegetarian ? "Yes" : "No"}</p>
+            <p>Overweight: {additionalInfo.isOverweight ? "Yes" : "No"}</p>
+          </div>
+        }
 
       </main>
     )
