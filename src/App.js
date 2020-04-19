@@ -3,90 +3,13 @@ import React, { useState } from "react"
 import TodoItem from "./TodoItem"
 import todosData from "./todosData"
 import Conditional from "./Conditional"
+import FormContainer from "./FormContainer"
 
-//checboxları tek bi propertyde birleştir
-class App extends React.Component {
-  constructor() {
-    super()
-    this.state = {
-      firstName: "",
-      lastName: "",
-      age: "",
-      gender: "",
-      destination: "",
-      additionalInfo: {
-        isVegetarian: false,
-        isOverweight: false,
-      },
-      isSubmited: false,
-    }
-  }
+function App() {
 
-  handleClick = () => {
-    const {name, value, type, checked} = event.target
-
-    type==="checkbox" ? 
-      this.setState({ additionalInfo: { ...this.state.additionalInfo, [name]: checked } }) 
-      : 
-      this.setState( { [name]: value })
-  }
-
-  handleSubmit = () => {
-    event.preventDefault()
-    this.setState({isSubmited: true})
-    const dataEncoded = JSON.stringify(this.state)
-    console.log(dataEncoded)
-    const dataDecoded = JSON.parse(dataEncoded)
-    console.log(dataDecoded)
-    
-  }
-
-  render() {
-    const {firstName, lastName, age, gender, destination, additionalInfo, isSubmited} = this.state
-
-    return (
-      <main>
-        <form onSubmit={this.handleSubmit}>
-
-          ***<input placeholder="First Name" name="firstName" value={firstName} onChange={this.handleClick} required/><br />
-          ***<input placeholder="Last Name" name="lastName" value={lastName} onChange={this.handleClick} required/><br />
-          <input placeholder="Age" name="age" value={age} onChange={this.handleClick} /><br /><br />
-
-          ***<label>
-            <input type="radio" name="gender" value="male" checked={gender==="male"} onChange={this.handleClick} required/> Male
-            </label>
-          <label>
-            <input type="radio" name="gender" value="female" checked={gender==="female"} onChange={this.handleClick} required/> Female
-          </label><br /><br />
-
-          ***<select name="destination" defaultValue="" onChange={this.handleClick} required>
-            <option disabled value="">Choose your destination</option>
-            <option value="Prague">Prague</option>
-            <option value="İstanbul">İstanbul</option>
-          </select><br /><br />
-
-          <label><input type="checkbox" name="isVegetarian" checked={additionalInfo.isVegetarian} onChange={this.handleClick} /> I am vegetarian</label><br />
-          <label><input type="checkbox" name="isOverweight" checked={additionalInfo.isOverweight} onChange={this.handleClick} /> I am overweight</label><br /><br />
-
-          <button>Submit</button><br /><br /><br />
-
-        </form>
-        {isSubmited &&
-          <div>
-            <h2>Entered information:</h2>
-            <p>Your name: {firstName} {lastName}</p>
-            <p>Your age: {age}</p>
-            <p>Your gender: {gender}</p>
-            <p>Your destination: {destination}</p>
-            <p>Your dietary restrictions: </p>
-            <p>Vegetarian: {additionalInfo.isVegetarian ? "Yes" : "No"}</p>
-            <p>Overweight: {additionalInfo.isOverweight ? "Yes" : "No"}</p>
-          </div>
-        }
-
-      </main>
-    )
-  }
+  return (
+    <FormContainer />
+  )
 }
 
 
