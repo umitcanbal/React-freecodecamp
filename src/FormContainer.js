@@ -39,7 +39,7 @@ class FormContainer extends React.Component {
   render() {
     return(
       <FormComponent 
-        data={this.state} 
+        {...this.state}
         handleSubmit={this.handleSubmit} 
         handleClick={this.handleClick}
       />

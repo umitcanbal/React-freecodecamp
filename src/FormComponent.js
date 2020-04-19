@@ -1,7 +1,7 @@
 import React from "react"
 
 function FormComponent(props) {
-  const {firstName, lastName, age, gender, destination, additionalInfo, isSubmited} = props.data
+  const {firstName, lastName, age, gender, destination, additionalInfo, isSubmited} = props
 
     return (
       <main>
